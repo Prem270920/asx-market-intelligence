@@ -1,0 +1,28 @@
+
+
+data/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Virtual environments
+venv/
+.env
+
+# Spark logs and temp files
+logs/
+*.log
+spark-warehouse/
+metastore_db/
+derby.log
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+EOF
