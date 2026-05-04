@@ -37,6 +37,27 @@ ASX50_TICKERS = [
     "AMC.AX", "AMP.AX", "MIN.AX", "AZJ.AX", "BOQ.AX",
 ]
 
+# Sector mapping for ASX50 tickers
+SECTOR_MAP = {
+    "BHP": "Materials",    "CBA": "Financials",   "CSL": "Healthcare",
+    "NAB": "Financials",   "WBC": "Financials",   "ANZ": "Financials",
+    "WES": "Consumer",     "MQG": "Financials",   "TLS": "Telecom",
+    "WOW": "Consumer",     "RIO": "Materials",    "FMG": "Materials",
+    "GMG": "Real Estate",  "REA": "Technology",   "COL": "Consumer",
+    "AGL": "Utilities",    "APA": "Utilities",    "ASX": "Financials",
+    "BXB": "Industrials",  "IAG": "Financials",   "IEL": "Technology",
+    "JHX": "Materials",    "LLC": "Real Estate",  "MPL": "Healthcare",
+    "NEM": "Materials",    "NST": "Materials",    "ORG": "Energy",
+    "ORI": "Materials",    "QAN": "Industrials",  "QBE": "Financials",
+    "RMD": "Healthcare",   "S32": "Materials",    "SCG": "Real Estate",
+    "SEK": "Technology",   "SHL": "Healthcare",   "STO": "Energy",
+    "SUN": "Financials",   "TCL": "Industrials",  "TWE": "Consumer",
+    "VCX": "Real Estate",  "WDS": "Energy",       "WPR": "Real Estate",
+    "XRO": "Technology",   "ALL": "Consumer",     "ALD": "Energy",
+    "AMC": "Materials",    "AMP": "Financials",   "MIN": "Materials",
+    "AZJ": "Industrials",  "BOQ": "Financials",
+}
+
 OUTPUT_DIR = Path("data/bronze/raw")
 START_DATE = "2022-01-01"
 END_DATE   = datetime.today().strftime("%Y-%m-%d")
@@ -56,6 +77,7 @@ def fetch_ticker(ticker: str) -> pd.DataFrame | None:
 
         df = df.reset_index()
         df["ticker"] = ticker.replace(".AX", "")  # store clean name e.g. "BHP"
+        df["sector"] = SECTOR_MAP.get(ticker.replace(".AX", ""), "Unknown") 
         log.info(f"  {ticker}: {len(df)} rows")
         return df
 
