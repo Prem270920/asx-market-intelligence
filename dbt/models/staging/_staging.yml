@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: stg_silver
+    description: "Direct Parquet read of the Silver layer — pass-through staging view"

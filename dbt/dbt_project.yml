@@ -1,0 +1,21 @@
+name: 'asx_intelligence'
+version: '1.0.0'
+config-version: 2
+
+profile: 'asx_intelligence'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  asx_intelligence:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
